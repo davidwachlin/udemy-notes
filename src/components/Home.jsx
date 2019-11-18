@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import CourseCard from './CourseCard'
 
 const CLIENT_ID = '37fqyI1bBebPvfciXBpXJSBqCcL8waqa3qHRuEjM';
 const CLIENT_SECRET =
@@ -30,37 +31,26 @@ export default class Home extends Component {
 		console.log(this.state.searchField);
 		axios({
             method: 'get',
-            mode: 'no-cors',
-			url: `https://www.udemy.com/api-2.0/courses/?page=100&search=${this.state.searchField}`,
+			url: `https://www.udemy.com/api-2.0/courses/?page_size=20&search=${this.state.searchField}`,
 			headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
                 'Authorization':
 					'Basic MzdmcXlJMWJCZWJQdmZjaVhCcFhKU0JxQ2NMOHdhcWEzcUhSdUVqTTpXUVBOdHYyTFZock5RNFZTR1Y4OEVQcmFyVFk2bmgyQ0UwcmtIMlRobDhDMEt6Yk1jNnNxenZHUGY0UEprR29VeHkxMDE1bUNvNUxwV3RFdEZFcjkzVmtub2U5VUM5WjZjTUN4YzNBZEV5U2VlTnJYYjluaWJtN2lscUp1emwyWQ=='
             }
-            // withCredentials: true,
-            // credentials: 'same-origin',
 		})
 			.then(response => {
-				console.log(response);
-				response.json();
+                this.setState({ courses: response.data.results })
+                console.log(`courses: ${this.state.courses}`)
 			})
-			.then(courses => this.setState({ courses: courses }));
+            //.then(courses => this.setState({ courses: courses }));
 	};
-	// componentDidMount() {
-	// 	axios
-	// 		.get(
-	// 			`https://www.udemy.com/api-2.0/courses/?page=100&search=${this.state.searchField}`, { crossorigin: true}
-	// 		)
-	// 		.then(response => {
-	// 			console.log(response);
-	// 			response.json();
-	// 		})
-	// 		.then(courses => this.setState({ courses: courses }));
-	// }
 
 	render() {
-		return (
+        const courseList = this.state.courses.map(course => {
+            return <CourseCard key={course.id} course={course} />
+        });
+
+        return (
 			<div>
 				<h1>Home</h1>
 				<form>
@@ -70,7 +60,8 @@ export default class Home extends Component {
 						value='Search'
 						onClick={this.handleSubmit}></input>
 					<p>search: {this.state.searchField}</p>
-				</form>
+                </form>
+                <div>{courseList}</div>
 			</div>
 		);
 	}
