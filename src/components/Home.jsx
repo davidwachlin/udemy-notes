@@ -3,8 +3,10 @@ import axios from 'axios';
 import CourseCard from './CourseCard'
 import data from '../data'
 
-import GridList from '@material-ui/core/GridList'
-import TextField from '@material-ui/core/GridList'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button';
 
 export default class Home extends Component {
 	state = {
@@ -44,18 +46,21 @@ export default class Home extends Component {
         });
 
         return (
-			<div>
+			<Container>
 				<h1>Home</h1>
 				<form>
-					<input onChange={this.handleChange} type='text'></input>
-					<input
-						type='submit'
-						value='Search'
-						onClick={this.handleSubmit}></input>
-					<p>search: {this.state.searchField}</p>
+                    <TextField
+                        id='search-field'
+                        onChange={this.handleChange}
+                        label='Search'
+                        variant='outlined'
+                    />
+                    <Button variant='contained' onClick={this.handleSubmit}>
+                        Search
+                    </Button>
                 </form>
-                <GridList>{courseList}</GridList>
-			</div>
+                <Grid container spacing='3'>{courseList}</Grid>
+			</Container>
 		);
 	}
 }

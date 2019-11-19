@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
-import GridListTile from '@material-ui/core/GridListTile';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -14,7 +14,6 @@ const styles = {
 		maxHeight: '400px',
 		padding: '0',
 		boxSizing: 'border-box',
-		margin: '1rem',
 		fontSize: '15px',
 		lineHeight: '1.43'
     },
@@ -44,7 +43,7 @@ const styles = {
 export default class CourseCard extends Component {
 	render() {
 		return (
-			<GridListTile>
+			<Grid item>
 				<Card style={styles.card}>
 					<CardMedia
 						component='img'
@@ -65,7 +64,7 @@ export default class CourseCard extends Component {
 						</Button>
 					</CardActions>
 				</Card>
-			</GridListTile>
+			</Grid>
 		);
 	}
 }
