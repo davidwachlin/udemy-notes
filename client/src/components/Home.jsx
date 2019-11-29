@@ -48,7 +48,7 @@ export default class Home extends Component {
         return (
 			<Container>
 				<h1>Home</h1>
-				<form>
+				<form onSubmit={this.handleSubmit}>
                     <TextField
                         id='search-field'
                         onChange={this.handleChange}
@@ -58,8 +58,10 @@ export default class Home extends Component {
                     <Button variant='contained' onClick={this.handleSubmit}>
                         Search
                     </Button>
+
+				<p>{this.state.searchField}</p>
                 </form>
-                <Grid container spacing='3'>{courseList}</Grid>
+                <Grid container>{courseList}</Grid>
 			</Container>
 		);
 	}
