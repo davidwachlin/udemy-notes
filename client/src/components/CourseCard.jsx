@@ -63,8 +63,8 @@ export default class CourseCard extends Component {
 					</CardContent>
 					<CardActions>
 						<Button size='small' color='primary'>
-
-							<Link to={'/course'}>SELECT</Link>
+							<p>{this.props.course.id}</p>
+							<Link to={`/course/${this.props.course.id}`}>SELECT</Link>
 						</Button>
 					</CardActions>
 				</Card>

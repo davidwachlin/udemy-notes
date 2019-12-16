@@ -61,7 +61,7 @@ export default class Home extends Component {
 
 				<p>{this.state.searchField}</p>
                 </form>
-                <Grid container>{courseList}</Grid>
+                <Grid container spacing={3}>{courseList}</Grid>
 			</Container>
 		);
 	}
